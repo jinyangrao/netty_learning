@@ -7,7 +7,7 @@ import io.netty.channel.group.ChannelGroup;
 import io.netty.channel.group.DefaultChannelGroup;
 import io.netty.util.concurrent.GlobalEventExecutor;
 
-public class MyServerChatHandler extends SimpleChannelInboundHandler<String> {
+public class MyChatServerHandler extends SimpleChannelInboundHandler<String> {
 
 
     private static ChannelGroup channelGroup = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
@@ -22,7 +22,13 @@ public class MyServerChatHandler extends SimpleChannelInboundHandler<String> {
         Channel channel = ctx.channel();
 
         channelGroup.forEach(ch -> {
-            
+
+            if(channel != ch) {
+                ch.writeAndFlush(channel.remoteAddress() + " 发送的消息： " + msg);
+            } else {
+                ch.writeAndFlush("[自己]" + msg + "\r\n");
+            }
+
         });
 
     }
