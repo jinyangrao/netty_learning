@@ -1,0 +1,51 @@
+syntax = "proto2";
+
+package com.mylearn.protobuf;
+
+option optimize_for = SPEED;
+
+option java_package = "com.netty.sixthexample";
+
+option java_outer_classname = "MyDataInfo";
+
+// 执行protoc --java_out=src/main/java src/protobuf/Student.proto
+message MyMessage {
+
+    enum DataType {
+        PersonType = 1;
+        DogType = 2;
+        CatType = 3;
+    }
+
+    // 官方的推荐定义变量方式为下划线链接
+    required DataType data_type = 1;
+
+    oneof dataBody {
+        Person person = 2;
+        Dog dog = 3;
+        Cat cat = 4;
+    }
+
+}
+
+message Person {
+    required string name = 1;
+    optional int32 age = 2;
+    optional string address = 3;
+}
+
+//　第二种消息
+message Dog {
+
+    // 官方的推荐定义变量方式为下划线链接
+    optional string  name = 1;
+    optional int32 age = 2;
+}
+
+message Cat {
+    // 官方的推荐定义变量方式为下划线链接
+    optional string  name = 1;
+    optional string city = 2;
+}
+
+

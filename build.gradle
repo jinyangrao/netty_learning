@@ -16,4 +16,11 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
     compile "io.netty:netty-all:4.1.33.Final"
 
+    // https://mvnrepository.com/artifact/com.google.protobuf/protobuf-java
+    compile group: 'com.google.protobuf', name: 'protobuf-java', version: '3.5.1'
+
+    // https://mvnrepository.com/artifact/com.google.protobuf/protobuf-java-util
+    compile group: 'com.google.protobuf', name: 'protobuf-java-util', version: '3.3.1'
+
+
 }

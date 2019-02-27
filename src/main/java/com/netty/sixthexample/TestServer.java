@@ -1,5 +1,6 @@
-package com.netty.fifthexample;
+package com.netty.sixthexample;
 
+import com.netty.fourthexample.MyServerInitializer;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.EventLoopGroup;
@@ -8,10 +9,10 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
 
-public class MyServer {
+public class TestServer {
 
+    public static void main(String[] args) throws Exception{
 
-    public static void main(String[] args) throws Exception {
         EventLoopGroup bossGroup = new NioEventLoopGroup();
 
         EventLoopGroup workGroup = new NioEventLoopGroup();
@@ -21,13 +22,14 @@ public class MyServer {
 
             serverBootstrap.group(bossGroup, workGroup).channel(NioServerSocketChannel.class)
                     .handler(new LoggingHandler(LogLevel.INFO))
-                    .childHandler(new WebSocketChannelInitializer());
+                    .childHandler(new TestInitializer());
             ChannelFuture channelFuture = serverBootstrap.bind(8899).sync();
             channelFuture.channel().closeFuture().sync();
         }finally {
             bossGroup.shutdownGracefully();
             workGroup.shutdownGracefully();
         }
+
 
     }
 
