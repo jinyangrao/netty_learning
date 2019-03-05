@@ -1,12 +1,12 @@
-plugins {
-    id 'java'
-}
+
 
 group 'com.pumbaa'
 version '1.0-SNAPSHOT'
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+
+apply plugin: 'java'
+apply plugin: 'com.google.protobuf'
+
 
 repositories {
     mavenCentral()
@@ -24,5 +24,34 @@ dependencies {
 
     compile group: 'org.apache.thrift', name: 'libthrift', version: '0.12.0'
 
+    compile 'io.grpc:grpc-netty-shaded:1.19.0'
+    compile 'io.grpc:grpc-protobuf:1.19.0'
+    compile 'io.grpc:grpc-stub:1.19.0'
 
+
+}
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.5'
+    }
+}
+
+protobuf {
+    protoc {
+        artifact = "com.google.protobuf:protoc:3.6.1"
+    }
+    plugins {
+        grpc {
+            artifact = 'io.grpc:protoc-gen-grpc-java:1.19.0'
+        }
+    }
+    generateProtoTasks {
+        all()*.plugins {
+            grpc {}
+        }
+    }
 }

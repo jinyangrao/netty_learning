@@ -44,7 +44,8 @@ hs_err_pid*
 
 # .nfs files are created when an open file is removed but is still being accessed
 .nfs*
-
+.gradle
 .gradle/5.2.1/vcsMetadata-1/
 src/main/resources/
 src/test/
+build
