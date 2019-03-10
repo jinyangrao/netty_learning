@@ -49,3 +49,9 @@ hs_err_pid*
 src/main/resources/
 src/test/
 build
+build/extracted-include-protos/
+build/extracted-protos/
+build/generated/
+gradle/wrapper/gradle-wrapper.properties
+gradlew
+gradlew.bat
